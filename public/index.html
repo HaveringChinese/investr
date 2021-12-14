@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CT Wealth Calculator</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  
+  <h1>Passive vs. Active Investing</h1>
+  <h2>Passive Investing</h2>
+  <h2>Active Investing</h2>
+  <h3>Initial Investment</h3>
+  <p>Initial Investment is how much money you can start investing with right now.</p>
+  <form onsubmit=crunchSomeNumbers()>
+    <label>Initial Investment</label>
+
+    <div class="input-container">
+      <!-- this element is hidden from display and screen readers. -->
+      <div class="input-hidden-label" 
+           aria-hidden="true">
+           How much money can you begin investing with today?
+      </div>
+ 
+      <input
+        id = "initial" 
+        class="input" 
+        type="text" 
+        placeholder="How much money can you begin investing with today?"/>
+    </div>
+    <br>
+    <label>Expected Additional Investment</label>
+    <div class="input-container">
+      <!-- this element is hidden from display and screen readers. -->
+      <div class="input-hidden-label" 
+           aria-hidden="true">
+           How much additional money do you plan to invest each month?
+      </div>
+ 
+      <input 
+        id = "additional"
+        class="input" 
+        type="text" 
+        placeholder="How much additional money do you plan to invest each month?"/>
+    </div>
+    <br>
+    <label>Age</label>
+    <input type="text" id="age" placeholder="How old are you?">
+    <input type="submit" value="Submit">
+
+    <h2>Input</h2>
+    <div class="display-input">
+      <p id="initial-investment"></p>
+      <p id="additional-investment"></p>
+      <p id="inputted-age"></p>
+    </div>
+    <h2>Results</h2>
+    <div id="display-results">
+      <p id="compounded"></p>
+    </div>
+
+  </form>
+
+<script type="text/Javascript" src="/index.js"></script>
+</body>
+</html>
