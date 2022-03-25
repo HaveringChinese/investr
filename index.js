@@ -24,22 +24,20 @@ function crunchSomeNumbers(){
   var initial = document.getElementById("initial").value;
   var additional = document.getElementById("additional").value;
   var age = Number(document.getElementById("age").value);
-  
-  document.getElementById("initial-investment").innerHTML = initial;
-  document.getElementById("additional-investment").innerHTML = additional;
-  document.getElementById("inputted-age").innerHTML = age;
 
 
 //compoundContinuous 
-function compoundContinuous(start, add, time, rate){
+function compoundContinuous(start, add, time, rate, difference = false){
   for (let i = 0; i < time; i++) {
     start = start * (1 + rate);
     start += (add * 12);
 
-  if (rate === 0.13){
+  if (rate === 0.13 && difference === false){
   activeCompoundWealthEachYear.push(parseInt(start));
-  } else if (rate === 0.07) {
+  } else if (rate === 0.07 && difference === false) {
     passiveCompoundWealthEachYear.push(parseInt(start));
+  } else if (difference === true){
+    break; 
   } else {
     console.log("Invalid rate given.");
     return null;
@@ -73,14 +71,16 @@ function postResults(type){
     document.getElementById("active-compounded").innerHTML = wealthAtEachAge(activeRate);
   } else if (type==="passive") {
     document.getElementById("passive-compounded").innerHTML = wealthAtEachAge(passiveRate);
-  } else {
-    return null;
+  } else if (type==="difference") {
+    let activeForty = parseInt(compoundContinuous(initial, additional, 40, activeRate, true));
+    let passiveForty = parseInt(compoundContinuous(initial, additional, 40, passiveRate, true));
+    document.getElementById("difference").innerHTML = "That's almost a " + (activeForty - passiveForty / passiveForty) * 100 + "% difference in wealth over the next 40 years of your life!";
   }
 };
 
 postResults("active");
 postResults("passive");
-
+postResults("difference");
 };
 
 //Display investment projections based on user input using Google Charts
